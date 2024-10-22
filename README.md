@@ -177,6 +177,7 @@ The `parser_cli.py` script provides a powerful command-line interface (CLI) for 
 ---
 
 This CLI provides a flexible way to use the LogxDB parser and test regex patterns directly from the command line.
+
 ---
 ## Running the Example
 
