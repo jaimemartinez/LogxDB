@@ -1,4 +1,3 @@
-
 # parser_cli.py
 import argparse
 import re
@@ -48,31 +47,37 @@ def main():
     """CLI entry point for the log parser."""
     parser = argparse.ArgumentParser(description="LogxDB: Log Parser with CLI and Regex REPL")
 
-    parser.add_argument('--db-path', type=str, required=True, help='Path to the SQLite database')
-    parser.add_argument('--files', nargs='+', required=True, help='List of log files to parse')
-    parser.add_argument('--regexes', nargs='+', required=True, help='List of regex patterns for each file')
-    parser.add_argument('--tables', nargs='+', required=True, help='Table names for each log file')
-    parser.add_argument('--columns', nargs='+', required=True, help='Comma-separated column names for each table')
-    parser.add_argument('--multiprocessing', action='store_true', help='Enable multiprocessing')
+    # Optional argument to launch the REPL
     parser.add_argument('--repl', action='store_true', help='Launch interactive regex testing REPL')
+
+    # Required arguments for parsing files
+    parser.add_argument('--db-path', type=str, help='Path to the SQLite database')
+    parser.add_argument('--files', nargs='+', help='List of log files to parse')
+    parser.add_argument('--regexes', nargs='+', help='List of regex patterns for each file')
+    parser.add_argument('--tables', nargs='+', help='Table names for each log file')
+    parser.add_argument('--columns', nargs='+', help='Comma-separated column names for each table')
+    parser.add_argument('--multiprocessing', action='store_true', help='Enable multiprocessing')
 
     args = parser.parse_args()
 
+    # If --repl is used, launch the REPL and exit
     if args.repl:
         regex_repl()
-    else:
-        if len(args.files) != len(args.regexes) or len(args.files) != len(args.tables) or len(args.files) != len(args.columns):
-            print("Error: The number of files, regexes, tables, and columns must match.")
-            sys.exit(1)
+        sys.exit(0)
 
-        run_parser(
-            db_path=args.db_path,
-            files=args.files,
-            regexes=args.regexes,
-            tables=args.tables,
-            columns=args.columns,
-            multiprocessing_enabled=args.multiprocessing
-        )
+    # Ensure all required arguments are provided for file parsing
+    if not (args.db_path and args.files and args.regexes and args.tables and args.columns):
+        parser.error("The following arguments are required: --db-path, --files, --regexes, --tables, --columns")
+
+    # Run the parser with the provided arguments
+    run_parser(
+        db_path=args.db_path,
+        files=args.files,
+        regexes=args.regexes,
+        tables=args.tables,
+        columns=args.columns,
+        multiprocessing_enabled=args.multiprocessing
+    )
 
 if __name__ == "__main__":
     main()
