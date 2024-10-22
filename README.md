@@ -286,10 +286,22 @@ You can now use YAML or JSON files to configure the parser. This makes it easier
 
 ```yaml
 files:
-  - file: test/log_file_1.log
-    regex: "(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)"
-    table: logs_1
-    columns: ["timestamp", "level", "message"]
+- columns:
+  - ip
+  - datetime
+  - status
+  file: web_server.log
+  regex: (?P<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[(?P<timestamp>\d{2}\/[A-Za-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2})\] - (?P<status>.*)
+
+  table: aggregated_logs
+- columns:
+  - timestamp
+  - level
+  - message
+  file: app.log
+  regex: (?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)
+  table: aggregated_logs2
+
 ```
 
 ### Example CLI Command
