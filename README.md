@@ -11,9 +11,10 @@
 logxdb/
 │
 ├── parser.py          # Main parser logic with multiprocessing and SQLite support
-├── main.py            # Example script to use the parser
-├── example_log_500_lines.log  # Example log file with timestamped entries
-├── another_log.log    # Example log file with event-based entries
+├── test/
+│       ├── main.py            # Example script to use the parser
+│       ├── example_log_500_lines.log  # Example log file with timestamped entries
+│       ├── another_log.log    # Example log file with event-based entries
 ├── LICENSE            # License file (MIT License)
 └── README.md          # Documentation for the project
 ```
@@ -54,30 +55,22 @@ logxdb/
 LogxDB uses `chardet` to detect the encoding of each file:
 
 ```python
-encoding = parser.detect_encoding("example_log_500_lines.log")
+encoding = parser.detect_encoding("test/example_log_500_lines.log")
 print(f"Detected encoding: {encoding}")
 ```
-
-This ensures that files with different encodings are processed correctly.
 
 ---
 
 ### 2. Parsing a Single Log File
 
-You can parse a single log file with a specific regex pattern:
-
 ```python
-data = parser.parse_file("example_log_500_lines.log", regex_1)
+data = parser.parse_file("test/example_log_500_lines.log", regex_1)
 print(data)
 ```
-
-This function reads the file, applies the regex pattern, and returns a list of parsed entries.
 
 ---
 
 ### 3. Storing Data in SQLite Database
-
-The `save_to_db` function stores the parsed log data into a SQLite table with custom column orders:
 
 ```python
 parser.save_to_db("log_table", data, ["timestamp", "level", "message"])
@@ -87,12 +80,10 @@ parser.save_to_db("log_table", data, ["timestamp", "level", "message"])
 
 ### 4. Handling Multiple Files with Custom Configurations
 
-You can define multiple files with their own table names, regex patterns, and column orders:
-
 ```python
 files_with_configs = {
-    "example_log_500_lines.log": ("table_500_lines", regex_1, ["timestamp", "level", "message"]),
-    "another_log.log": ("another_table", regex_2, ["date", "event", "details"])
+    "test/example_log_500_lines.log": ("table_500_lines", regex_1, ["timestamp", "level", "message"]),
+    "test/another_log.log": ("another_table", regex_2, ["date", "event", "details"])
 }
 ```
 
@@ -100,44 +91,38 @@ files_with_configs = {
 
 ### 5. Enabling Multiprocessing for Faster Processing
 
-To speed up parsing, use the `parse_multiple_files` function with multiprocessing enabled:
-
 ```python
 parser.parse_multiple_files(files_with_configs, enable_multiprocessing=True)
 ```
 
-This processes files in parallel using all available CPU cores.
-
 ---
 
-## Running the Project
+## Running the Example
 
-1. Ensure all files are in the same directory.
-2. Run the project using the following command:
+Navigate to the `test/` directory and run:
 
-    ```bash
-    python main.py
-    ```
+```bash
+python main.py
+```
 
 ---
 
 ## Troubleshooting
 
-- **`sqlite3.Connection` cannot be pickled**: Ensure each process creates its own SQLite connection to avoid pickling errors.
+- **`sqlite3.Connection` cannot be pickled**: Ensure each process opens its own SQLite connection.
 
 ---
 
 ## Dependencies
 
 - **Python 3.10+**
-- **chardet**: For encoding detection. Install using:
-
+- **chardet**: Install using:
+  
     ```bash
     pip install chardet
     ```
 
 - **sqlite3**: Comes pre-installed with Python.
-- **multiprocessing**: Standard Python library for parallel processing.
 
 ---
 
