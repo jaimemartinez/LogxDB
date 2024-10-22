@@ -1,0 +1,555 @@
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - User login successful: user123
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - User login successful: user123
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - User login successful: user123
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - WARN - User login successful: user123
+Additional information for the previous entry.
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - User login successful: user123
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - INFO - User login successful: user123
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - User login successful: user123
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - INFO - User login successful: user123
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Database connection timeout
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - User login successful: user123
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+Additional information for the previous entry.
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - User login successful: user123
+2024-10-22 16:18:53 - WARN - Database connection timeout
+Additional information for the previous entry.
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - User login successful: user123
+2024-10-22 16:18:53 - INFO - User login successful: user123
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - User login successful: user123
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - User login successful: user123
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+Additional information for the previous entry.
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - INFO - User login successful: user123
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - User login successful: user123
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - User login successful: user123
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - User login successful: user123
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+Additional information for the previous entry.
+2024-10-22 16:18:53 - INFO - User login successful: user123
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - User login successful: user123
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - User login successful: user123
+Additional information for the previous entry.
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - INFO - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - Database connection timeout
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - Database connection timeout
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - User login successful: user123
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - User login successful: user123
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - User login successful: user123
+Additional information for the previous entry.
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - INFO - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+Additional information for the previous entry.
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - INFO - User login successful: user123
+2024-10-22 16:18:53 - INFO - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - WARN - User login successful: user123
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - User login successful: user123
+Additional information for the previous entry.
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+Additional information for the previous entry.
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Database connection timeout
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - WARN - User login successful: user123
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+Additional information for the previous entry.
+2024-10-22 16:18:53 - INFO - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - INFO - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - User login successful: user123
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - WARN - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - INFO - Processing request: /api/v1/data
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - ERROR - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - INFO - User login successful: user123
+2024-10-22 16:18:53 - ERROR - Low disk space on /dev/sda1
+Additional information for the previous entry.
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - User login successful: user123
+2024-10-22 16:18:53 - DEBUG - User login successful: user123
+2024-10-22 16:18:53 - INFO - User login successful: user123
+Additional information for the previous entry.
+2024-10-22 16:18:53 - INFO - Fetching data from cache: user_profile
+2024-10-22 16:18:53 - WARN - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Processing request: /api/v1/data
+2024-10-22 16:18:53 - DEBUG - Low disk space on /dev/sda1
+2024-10-22 16:18:53 - ERROR - Failed login attempt: user456
+2024-10-22 16:18:53 - DEBUG - Failed login attempt: user456
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - ERROR - User login successful: user123
+2024-10-22 16:18:53 - ERROR - Database connection timeout
+2024-10-22 16:18:53 - WARN - Database connection timeout
+2024-10-22 16:18:53 - INFO - Failed login attempt: user456
