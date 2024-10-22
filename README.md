@@ -1,5 +1,5 @@
 
-# LogxDB: A Robust Log Parser with Multiprocessing and Encoding Detection
+# LogxDB: A Robust Log Parser with CLI and Interactive Regex Testing
 
 **LogxDB** is a high-performance log parser designed to handle multiple log files concurrently with **multiprocessing** and **auto-detect encoding** to ensure compatibility with diverse formats. It stores parsed data in **SQLite** databases with support for **custom regex patterns**, **table names**, and **column orders**.
 
@@ -11,6 +11,7 @@
 logxdb/
 │
 ├── parser.py          # Main parser logic with multiprocessing and SQLite support
+├── parser_cli.py      # CLI for running the parser and interactive regex testing
 ├── test/
 │       ├── main.py            # Example script to use the parser
 │       ├── example_log_500_lines.log  # Example log file with timestamped entries
@@ -26,8 +27,9 @@ logxdb/
 1. **Multiprocessing**: Efficiently process multiple log files in parallel.
 2. **Encoding Detection**: Detects the encoding of each log file automatically.
 3. **Custom Table Names and Column Orders**: Save logs to SQLite with custom table names and column configurations.
-4. **Regex Parsing**: Use flexible regex patterns to extract log data.
-5. **Multi-line Log Entry Support**: Handles logs that span multiple lines.
+4. **CLI Interface**: Use the parser directly from the command line.
+5. **Interactive Regex Testing REPL**: Test regex patterns interactively.
+6. **Multi-line Log Entry Support**: Handles logs that span multiple lines.
 
 ---
 
@@ -48,68 +50,51 @@ logxdb/
 
 ---
 
-## Usage Guide for Each Functionality
+## CLI Usage Guide
 
-### 1. Detecting Encoding of Log Files
-
-LogxDB uses `chardet` to detect the encoding of each file:
-
-```python
-encoding = parser.detect_encoding("test/example_log_500_lines.log")
-print(f"Detected encoding: {encoding}")
-```
-
----
-
-### 2. Parsing a Single Log File
-
-```python
-data = parser.parse_file("test/example_log_500_lines.log", regex_1)
-print(data)
-```
-
----
-
-### 3. Storing Data in SQLite Database
-
-```python
-parser.save_to_db("log_table", data, ["timestamp", "level", "message"])
-```
-
----
-
-### 4. Handling Multiple Files with Custom Configurations
-
-```python
-files_with_configs = {
-    "test/example_log_500_lines.log": ("table_500_lines", regex_1, ["timestamp", "level", "message"]),
-    "test/another_log.log": ("another_table", regex_2, ["date", "event", "details"])
-}
-```
-
----
-
-### 5. Enabling Multiprocessing for Faster Processing
-
-```python
-parser.parse_multiple_files(files_with_configs, enable_multiprocessing=True)
-```
-
----
-
-## Running the Example
-
-Navigate to the `test/` directory and run:
+### 1. Running the Parser from the CLI
 
 ```bash
-python main.py
+python parser_cli.py     --db-path logs.db     --files test/example_log_500_lines.log test/another_log.log     --regexes "(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)"               "(?P<date>\d{2}/\d{2}/\d{4}) \| (?P<event>\w+) \| (?P<details>.*)"     --tables table_500_lines another_table     --columns "timestamp,level,message" "date,event,details"     --multiprocessing
+```
+
+---
+
+### 2. Launching the Interactive Regex Testing REPL
+
+```bash
+python parser_cli.py --repl
+```
+
+#### Example REPL Interaction:
+```
+Welcome to the Regex Tester REPL! Type 'exit' to quit.
+Enter regex pattern: (?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)
+Enter test string: 2024-10-22 16:19:43 - INFO - Parsing completed successfully.
+Match found:
+{
+    "timestamp": "2024-10-22 16:19:43",
+    "level": "INFO",
+    "message": "Parsing completed successfully."
+}
+Enter regex pattern: exit
+```
+
+---
+
+## Example Usage: `main.py`
+
+Navigate to the `test/` directory and run the example script:
+
+```bash
+python test/main.py
 ```
 
 ---
 
 ## Troubleshooting
 
-- **`sqlite3.Connection` cannot be pickled**: Ensure each process opens its own SQLite connection.
+- **sqlite3.Connection cannot be pickled**: Ensure each process opens its own SQLite connection to avoid pickling errors.
 
 ---
 
@@ -117,12 +102,10 @@ python main.py
 
 - **Python 3.10+**
 - **chardet**: Install using:
-  
+
     ```bash
     pip install chardet
     ```
-
-- **sqlite3**: Comes pre-installed with Python.
 
 ---
 
