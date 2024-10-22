@@ -111,9 +111,9 @@ class LogParser:
         config_path = Path(config_file)
         if not config_path.exists():
             raise LogParserError(f"Configuration file '{config_file}' not found.")
-
+    
         logging.info(f"Loading configuration from {config_file}.")
-        if config_file.endswith('.yaml') or config_file.endswith('.yml'):
+        if config_file.endswith(('.yaml', '.yml')):
             with open(config_file, 'r') as f:
                 return yaml.safe_load(f)
         elif config_file.endswith('.json'):
@@ -121,8 +121,15 @@ class LogParser:
                 return json.load(f)
         else:
             raise LogParserError("Unsupported configuration file format. Use YAML or JSON.")
-
+    
     def parse_with_config_file(self, config_file, enable_multiprocessing=False):
         """Parse multiple files using a YAML or JSON configuration file."""
-        configs = self.load_config(config_file)
-        self.parse_multiple_files(configs, enable_multiprocessing)
+        config = self.load_config(config_file)
+        files_with_configs = {
+            entry['file']: (
+                entry['table'],
+                entry['regex'],
+                entry['columns']
+            ) for entry in config['files']
+        }
+        self.parse_multiple_files(files_with_configs, enable_multiprocessing)
