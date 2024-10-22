@@ -95,39 +95,6 @@ parser.parse_multiple_files(files_with_configs, enable_multiprocessing=True)
 ```
 
 ---
-
-### 6. Customizable Logging Levels and File Logging
-The LogParser now supports configurable logging levels. You can choose between the following levels:
-
-DEBUG
-INFO (default)
-WARNING
-ERROR
-CRITICAL
-You can also log messages to a file by specifying the log_file parameter.
-
-Example: Using the Logging Configuration in Code
-python
-Copy code
-from parser import LogParser
-
-# Initialize the parser with a log level and log file
-parser = LogParser(
-    db_path="logs.db",
-    log_level="DEBUG",  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
-    log_file="parser.log"  # Optional: Logs will be written to this file
-)
-
-# Configure the files and parse them
-files_with_configs = {
-    "test/example_log_500_lines.log": ("table_500_lines", regex_1, ["timestamp", "level", "message"]),
-    "test/another_log.log": ("another_table", regex_2, ["date", "event", "details"])
-}
-
-parser.parse_multiple_files(files_with_configs, enable_multiprocessing=True)
-If a log file is provided, the logs will be saved to it. Otherwise, they will be printed to the console.
-
----
 ## CLI Documentation
 
 The `parser_cli.py` script provides a powerful command-line interface (CLI) for running the LogxDB parser and testing regex patterns interactively.
