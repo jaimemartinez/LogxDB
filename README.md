@@ -3,6 +3,8 @@
 
 **LogxDB** is a high-performance log parser designed to handle multiple log files concurrently with **multiprocessing** and **auto-detect encoding** to ensure compatibility with diverse formats. It stores parsed data in **SQLite** databases with support for **custom regex patterns**, **table names**, and **column orders**.
 
+---
+
 ## Project Structure
 
 ```
@@ -20,11 +22,11 @@ logxdb/
 
 ## Features
 
-1. **Multiprocessing**: Efficiently processes multiple log files in parallel using Python’s `multiprocessing`.
-2. **Encoding Detection**: Detects file encoding automatically using `chardet`.
-3. **Custom Table Names and Orders**: Save parsed logs to SQLite with configurable table names and column orders.
-4. **Regex Parsing**: Flexible regex patterns to extract log data.
-5. **Multi-line Log Support**: Handles log entries that span multiple lines.
+1. **Multiprocessing**: Efficiently process multiple log files in parallel.
+2. **Encoding Detection**: Detects the encoding of each log file automatically.
+3. **Custom Table Names and Column Orders**: Save logs to SQLite with custom table names and column configurations.
+4. **Regex Parsing**: Use flexible regex patterns to extract log data.
+5. **Multi-line Log Entry Support**: Handles logs that span multiple lines.
 
 ---
 
@@ -45,61 +47,73 @@ logxdb/
 
 ---
 
-## Usage
+## Usage Guide for Each Functionality
 
-### Example Log Files
+### 1. Detecting Encoding of Log Files
 
-- [example_log_500_lines.log](./example_log_500_lines.log)
-- [another_log.log](./another_log.log)
-
----
-
-### Main Functionality: `parser.py`
-
-`parser.py` contains the core logic, which:
-- Detects file encoding.
-- Uses regex to parse logs.
-- Stores parsed data into SQLite tables.
-- Supports parallel processing via multiprocessing.
-
----
-
-### Example Script: `main.py`
-
-`main.py` demonstrates how to use the parser:
+LogxDB uses `chardet` to detect the encoding of each file:
 
 ```python
-from parser import LogParser, LogParserError
+encoding = parser.detect_encoding("example_log_500_lines.log")
+print(f"Detected encoding: {encoding}")
+```
 
-# Define the regex patterns for each log format
-regex_1 = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)"
-regex_2 = r"(?P<date>\d{2}/\d{2}/\d{4}) \| (?P<event>\w+) \| (?P<details>.*)"
+This ensures that files with different encodings are processed correctly.
 
-try:
-    # Initialize the parser with the path to the SQLite database
-    parser = LogParser(db_path="logs.db")
+---
 
-    # Define the files with their configurations
-    files_with_configs = {
-        "example_log_500_lines.log": ("table_500_lines", regex_1, ["timestamp", "level", "message"]),
-        "another_log.log": ("another_table", regex_2, ["date", "event", "details"])
-    }
+### 2. Parsing a Single Log File
 
-    # Parse files with multiprocessing enabled
-    parser.parse_multiple_files(files_with_configs, enable_multiprocessing=True)
+You can parse a single log file with a specific regex pattern:
 
-    print("All files processed successfully.")
+```python
+data = parser.parse_file("example_log_500_lines.log", regex_1)
+print(data)
+```
 
-except LogParserError as e:
-    print(f"An error occurred: {e}")
+This function reads the file, applies the regex pattern, and returns a list of parsed entries.
+
+---
+
+### 3. Storing Data in SQLite Database
+
+The `save_to_db` function stores the parsed log data into a SQLite table with custom column orders:
+
+```python
+parser.save_to_db("log_table", data, ["timestamp", "level", "message"])
 ```
 
 ---
 
-### Running the Project
+### 4. Handling Multiple Files with Custom Configurations
 
-1. Ensure all log files and scripts are in the same directory.
-2. Run the parser using:
+You can define multiple files with their own table names, regex patterns, and column orders:
+
+```python
+files_with_configs = {
+    "example_log_500_lines.log": ("table_500_lines", regex_1, ["timestamp", "level", "message"]),
+    "another_log.log": ("another_table", regex_2, ["date", "event", "details"])
+}
+```
+
+---
+
+### 5. Enabling Multiprocessing for Faster Processing
+
+To speed up parsing, use the `parse_multiple_files` function with multiprocessing enabled:
+
+```python
+parser.parse_multiple_files(files_with_configs, enable_multiprocessing=True)
+```
+
+This processes files in parallel using all available CPU cores.
+
+---
+
+## Running the Project
+
+1. Ensure all files are in the same directory.
+2. Run the project using the following command:
 
     ```bash
     python main.py
@@ -107,32 +121,23 @@ except LogParserError as e:
 
 ---
 
+## Troubleshooting
+
+- **`sqlite3.Connection` cannot be pickled**: Ensure each process creates its own SQLite connection to avoid pickling errors.
+
+---
+
 ## Dependencies
 
 - **Python 3.10+**
 - **chardet**: For encoding detection. Install using:
-  
+
     ```bash
     pip install chardet
     ```
 
 - **sqlite3**: Comes pre-installed with Python.
 - **multiprocessing**: Standard Python library for parallel processing.
-
----
-
-## How It Works
-
-1. **Encoding Detection**: `parser.py` uses `chardet` to detect the encoding of each file.
-2. **Parallel Processing**: Log files are processed in parallel using multiple CPU cores.
-3. **SQLite Database**: Parsed data is stored in custom tables based on your configuration.
-4. **Multi-line Support**: If a log line doesn’t match the regex, it’s appended to the previous entry.
-
----
-
-## Troubleshooting
-
-- **sqlite3.Connection cannot be pickled**: Ensure each process opens its own SQLite connection to avoid pickling errors.
 
 ---
 
