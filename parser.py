@@ -8,17 +8,21 @@ from multiprocessing import Pool, cpu_count
 import chardet
 from pathlib import Path
 
+
 class LogParserError(Exception):
     """Custom exception class for LogParser errors."""
     pass
 
+
 class LogParser:
+
     def __init__(self, db_path, log_level='INFO', log_file=None):
         """Initialize the parser with a database path and logging configuration."""
         self.db_path = db_path
         self.configure_logging(log_level, log_file)
-        logging.debug("Initialized LogParser with db_path='%s', log_level='%s', log_file='%s'",
-                      db_path, log_level, log_file)
+        logging.debug(
+            "Initialized LogParser with db_path='%s', log_level='%s', log_file='%s'",
+            db_path, log_level, log_file)
 
     def configure_logging(self, log_level, log_file):
         """Configures logging settings."""
@@ -28,12 +32,10 @@ class LogParser:
         if log_file:
             handlers.append(logging.FileHandler(log_file))
 
-        logging.basicConfig(
-            level=numeric_level,
-            format='%(asctime)s - %(levelname)s - %(message)s',
-            datefmt='%Y-%m-%d %H:%M:%S',
-            handlers=handlers
-        )
+        logging.basicConfig(level=numeric_level,
+                            format='%(asctime)s - %(levelname)s - %(message)s',
+                            datefmt='%Y-%m-%d %H:%M:%S',
+                            handlers=handlers)
         logging.info("Logging configured with level '%s'", log_level)
 
     def detect_encoding(self, file_path):
@@ -43,10 +45,12 @@ class LogParser:
                 raw_data = f.read(1024)
                 result = chardet.detect(raw_data)
                 encoding = result['encoding']
-                logging.info("Detected encoding for '%s': %s", file_path, encoding)
+                logging.info("Detected encoding for '%s': %s", file_path,
+                             encoding)
                 return encoding
         except Exception as e:
-            logging.error("Failed to detect encoding for '%s': %s", file_path, str(e))
+            logging.error("Failed to detect encoding for '%s': %s", file_path,
+                          str(e))
             raise
 
     def parse_line(self, line, regex):
@@ -64,39 +68,36 @@ class LogParser:
             raise
 
     def parse_file(self, file_path, regex):
-        """Parses a log file line by line, treating unmatched lines as continuations."""
+        """Parses a log file line by line, handling multi-line entries."""
         results = []
         current_entry = None
         encoding = self.detect_encoding(file_path)
-    
+
         try:
             with open(file_path, encoding=encoding) as f:
                 for line in f:
                     parsed_line = self.parse_line(line, regex)
-                    
                     if parsed_line:
-                        # If there is an existing entry, add it to results
+                        # If we have a current entry, store it before starting a new one
                         if current_entry:
                             results.append(current_entry)
                         current_entry = parsed_line  # Start a new entry
-                        logging.debug("New entry started: %s", current_entry)
                     else:
-                        # If no match, treat as a continuation of the previous message
+                        # If line doesn't match, append it to the 'message' field of the current entry
                         if current_entry:
-                            current_entry['message'] = current_entry.get('message', '') + "\n" + line.strip()
-                            logging.debug("Continuation added to entry: %s", current_entry)
+                            current_entry['status'] += "\n" + line.strip()
+                            logging.debug("Appended to previous entry: %s", line.strip())
                         else:
-                            logging.warning("Orphaned continuation line: %s", line.strip())
-    
+                            logging.warning(
+                                "Unmatched line with no previous entry: %s", line.strip()
+                            )
                 # Add the last entry if it exists
                 if current_entry:
                     results.append(current_entry)
-    
             logging.info("Finished parsing '%s'. Parsed %d entries.", file_path, len(results))
         except Exception as e:
             logging.error("Error parsing file '%s': %s", file_path, str(e))
             raise
-    
         return results
 
 
@@ -106,9 +107,11 @@ class LogParser:
         query = f"CREATE TABLE IF NOT EXISTS {table_name} (id INTEGER PRIMARY KEY AUTOINCREMENT, {columns_definition});"
         try:
             conn.execute(query)
-            logging.debug("Created table '%s' with columns: %s", table_name, columns)
+            logging.debug("Created table '%s' with columns: %s", table_name,
+                          columns)
         except sqlite3.Error as e:
-            logging.critical("SQLite error creating table '%s': %s", table_name, str(e))
+            logging.critical("SQLite error creating table '%s': %s",
+                             table_name, str(e))
             raise
 
     def save_to_db(self, table_name, data, column_order):
@@ -122,9 +125,11 @@ class LogParser:
                 values = [entry.get(col) for col in column_order]
                 conn.execute(query, values)
             conn.commit()
-            logging.info("Saved %d entries to table '%s'.", len(data), table_name)
+            logging.info("Saved %d entries to table '%s'.", len(data),
+                         table_name)
         except sqlite3.Error as e:
-            logging.error("SQLite error saving to table '%s': %s", table_name, str(e))
+            logging.error("SQLite error saving to table '%s': %s", table_name,
+                          str(e))
             raise
         finally:
             conn.close()
@@ -140,7 +145,9 @@ class LogParser:
             logging.error("Error processing file '%s': %s", config[0], str(e))
             raise
 
-    def parse_multiple_files(self, files_with_configs, enable_multiprocessing=False):
+    def parse_multiple_files(self,
+                             files_with_configs,
+                             enable_multiprocessing=False):
         """Parse multiple files with multiprocessing support."""
         if enable_multiprocessing:
             logging.info("Multiprocessing enabled.")
@@ -156,7 +163,8 @@ class LogParser:
         config_path = Path(config_file)
         if not config_path.exists():
             logging.critical("Configuration file '%s' not found.", config_file)
-            raise LogParserError(f"Configuration file '{config_file}' not found.")
+            raise LogParserError(
+                f"Configuration file '{config_file}' not found.")
 
         logging.info("Loading configuration from '%s'.", config_file)
         try:
@@ -167,19 +175,19 @@ class LogParser:
                 with open(config_file, 'r') as f:
                     return json.load(f)
             else:
-                raise LogParserError("Unsupported configuration file format. Use YAML or JSON.")
+                raise LogParserError(
+                    "Unsupported configuration file format. Use YAML or JSON.")
         except Exception as e:
             logging.critical("Error loading configuration: %s", str(e))
             raise
 
-    def parse_with_config_file(self, config_file, enable_multiprocessing=False):
+    def parse_with_config_file(self,
+                               config_file,
+                               enable_multiprocessing=False):
         """Parse multiple files using a YAML or JSON configuration file."""
         config = self.load_config(config_file)
         files_with_configs = {
-            entry['file']: (
-                entry['table'],
-                entry['regex'],
-                entry['columns']
-            ) for entry in config['files']
+            entry['file']: (entry['table'], entry['regex'], entry['columns'])
+            for entry in config['files']
         }
         self.parse_multiple_files(files_with_configs, enable_multiprocessing)
