@@ -276,36 +276,84 @@ If you have any questions or suggestions, feel free to open an issue or contact 
 
 ---
 
----
+## New Features and Usage
 
-## New Feature: User-Friendly Configuration with YAML/JSON
+This version of the Log Parser CLI introduces the following new features:
 
-You can now use YAML or JSON files to configure the parser. This makes it easier to manage multiple log files, regex patterns, and database settings.
+### 1. YAML and JSON Configuration Support
+You can now use **YAML** or **JSON** configuration files to simplify log parsing setup.
 
-### Example YAML Configuration
-
+Example YAML (`config.yaml`):
 ```yaml
 files:
-- columns:
-  - ip
-  - datetime
-  - status
-  file: web_server.log
-  regex: (?P<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[(?P<timestamp>\d{2}\/[A-Za-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2})\] - (?P<status>.*)
-
-  table: aggregated_logs
-- columns:
-  - timestamp
-  - level
-  - message
-  file: app.log
-  regex: (?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)
-  table: aggregated_logs2
-
+  - file: web_server.log
+    table: web_logs
+    regex: (?P<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[(?P<timestamp>\d{2}\/[A-Za-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2})\] - (?P<status>.*)
+    columns:
+      - ip
+      - timestamp
+      - status
+  - file: app.log
+    table: app_logs
+    regex: (?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)
+    columns:
+      - timestamp
+      - level
+      - message
 ```
 
-### Example CLI Command
+### 2. Command-line Usage with Config Files
+
+You can specify the config file directly in the CLI:
 
 ```bash
-python parser_cli.py --config config.yaml --log-level DEBUG --log-file parser.log
+python parser_cli.py --config config.yaml --multiprocessing --log-level DEBUG --log-file parser_output.log
 ```
+
+### 3. Interactive Regex Tester (REPL)
+
+Test your regex patterns interactively using the REPL mode:
+
+```bash
+python parser_cli.py --repl
+```
+
+Example:
+```
+Enter regex pattern: (?P<ip>\d+\.\d+\.\d+\.\d+) - \[(?P<timestamp>\d+\/\w+\/\d+:\d+:\d+:\d+)\] - (?P<status>.*)
+Enter test string: 192.168.1.1 - [22/Oct/2024:16:00:01] - 200
+Match found:
+{
+    "ip": "192.168.1.1",
+    "timestamp": "22/Oct/2024:16:00:01",
+    "status": "200"
+}
+```
+
+### 4. Multiprocessing Support
+Enable multiprocessing for faster log parsing with the `--multiprocessing` flag.
+
+### 5. Example SQLite Database Output
+
+**web_logs Table:**
+| id | ip           | timestamp               | status |
+|----|--------------|-------------------------|--------|
+| 1  | 192.168.1.1  | 22/Oct/2024:16:00:01    | 200    |
+| 2  | 192.168.1.2  | 22/Oct/2024:16:01:12    | 404    |
+| 3  | 192.168.1.3  | 22/Oct/2024:16:02:23    | 500    |
+
+**app_logs Table:**
+| id | timestamp           | level | message               |
+|----|---------------------|-------|-----------------------|
+| 1  | 2024-10-22 16:10:32 | INFO  | Application started   |
+| 2  | 2024-10-22 16:12:45 | ERROR | Application crashed   |
+
+### 6. Complete CLI Command Example
+```bash
+python parser_cli.py     --db-path logs.db     --files web_server.log app.log     --regexes "(?P<ip>\d+\.\d+\.\d+\.\d+) - \[(?P<timestamp>\d+\/\w+\/\d+:\d+:\d+:\d+)\] - (?P<status>.*)"               "(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)"     --tables web_logs app_logs     --columns ip,timestamp,status timestamp,level,message     --log-level DEBUG --log-file parser.log --multiprocessing
+```
+
+### 7. Error Handling and Logging
+- Critical and unexpected errors are logged with `CRITICAL` severity.
+- Errors in file parsing or configuration are logged and reported gracefully.
+
