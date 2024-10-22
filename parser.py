@@ -1,31 +1,40 @@
-
 # parser.py
 import re
 import sqlite3
 import logging
 from datetime import datetime
 from multiprocessing import Pool, cpu_count
-import chardet  # For encoding detection
-
-logging.basicConfig(
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
-    level=logging.INFO
-)
+import chardet
 
 class LogParserError(Exception):
     """Custom exception class for LogParser errors."""
     pass
 
 class LogParser:
-    def __init__(self, db_path):
-        """Initialize the parser with a database path."""
+    def __init__(self, db_path, log_level='INFO', log_file=None):
+        """Initialize the parser with a database path and logging configuration."""
         self.db_path = db_path
+        self.configure_logging(log_level, log_file)
+
+    def configure_logging(self, log_level, log_file):
+        """Configures logging settings."""
+        numeric_level = getattr(logging, log_level.upper(), logging.INFO)
+        handlers = [logging.StreamHandler()]
+
+        if log_file:
+            handlers.append(logging.FileHandler(log_file))
+
+        logging.basicConfig(
+            level=numeric_level,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            datefmt='%Y-%m-%d %H:%M:%S',
+            handlers=handlers
+        )
 
     def detect_encoding(self, file_path):
         """Detect the encoding of the given file."""
         with open(file_path, 'rb') as f:
-            raw_data = f.read(1024)  # Read the first 1KB of the file
+            raw_data = f.read(1024)
             result = chardet.detect(raw_data)
             encoding = result['encoding']
             logging.info(f"Detected encoding for {file_path}: {encoding}")
@@ -40,13 +49,11 @@ class LogParser:
         """Parses a log file line by line, handling multi-line entries."""
         results = []
         current_entry = None
-
-        encoding = self.detect_encoding(file_path)  # Auto-detect encoding
+        encoding = self.detect_encoding(file_path)
 
         with open(file_path, encoding=encoding) as f:
             for line in f:
                 parsed_line = self.parse_line(line, regex)
-
                 if parsed_line:
                     if current_entry:
                         results.append(current_entry)
@@ -54,10 +61,10 @@ class LogParser:
                 else:
                     if current_entry:
                         current_entry['message'] += "\n" + line.strip()
-
             if current_entry:
                 results.append(current_entry)
 
+        logging.info(f"Finished parsing {file_path}. Parsed {len(results)} entries.")
         return results
 
     def create_table(self, conn, table_name, columns):
@@ -67,31 +74,27 @@ class LogParser:
         conn.execute(query)
 
     def save_to_db(self, table_name, data, column_order):
-        """Save parsed data to the SQLite database."""
-        conn = sqlite3.connect(self.db_path)  # Create a new connection
-        columns = column_order
-        self.create_table(conn, table_name, columns)
-
-        placeholders = ", ".join(["?"] * len(columns))
-        query = f"INSERT INTO {table_name} ({', '.join(columns)}) VALUES ({placeholders})"
-
+        """Saves parsed data to the SQLite database."""
+        conn = sqlite3.connect(self.db_path)
+        self.create_table(conn, table_name, column_order)
+        placeholders = ", ".join(["?"] * len(column_order))
+        query = f"INSERT INTO {table_name} ({', '.join(column_order)}) VALUES ({placeholders})"
         for entry in data:
-            values = [entry.get(col, None) for col in columns]
+            values = [entry.get(col) for col in column_order]
             conn.execute(query, values)
-
         conn.commit()
-        conn.close()  # Close the connection after saving
+        conn.close()
+        logging.info(f"Saved {len(data)} entries to table '{table_name}'.")
 
     def process_file(self, config):
         """Process a single file with its configuration."""
         file_path, (table_name, regex, column_order) = config
         logging.info(f"Processing file: {file_path}")
-
         data = self.parse_file(file_path, regex)
         self.save_to_db(table_name, data, column_order)
 
     def parse_multiple_files(self, files_with_configs, enable_multiprocessing=False):
-        """Parse multiple files and save each to its corresponding table."""
+        """Parse multiple files with multiprocessing support."""
         if enable_multiprocessing:
             logging.info("Multiprocessing enabled.")
             with Pool(processes=cpu_count()) as pool:
