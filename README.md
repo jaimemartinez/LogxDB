@@ -96,54 +96,6 @@ parser.parse_multiple_files(files_with_configs, enable_multiprocessing=True)
 ```
 
 ---
-
-## Running the Example
-
-Navigate to the `test/` directory and run:
-
-```bash
-python main.py
-```
-
----
-
-## Troubleshooting
-
-- **`sqlite3.Connection` cannot be pickled**: Ensure each process opens its own SQLite connection.
-
----
-
-## Dependencies
-
-- **Python 3.10+**
-- **chardet**: Install using:
-  
-    ```bash
-    pip install chardet
-    ```
-
-- **sqlite3**: Comes pre-installed with Python.
-
----
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
-
----
-
-## Contributing
-
-Contributions are welcome! Open an issue or submit a pull request for improvements.
-
----
-
-## Contact
-
-If you have any questions or suggestions, feel free to open an issue or contact the repository owner.
-
----
-
 ## CLI Documentation
 
 The `parser_cli.py` script provides a powerful command-line interface (CLI) for running the LogxDB parser and testing regex patterns interactively.
@@ -225,3 +177,51 @@ The `parser_cli.py` script provides a powerful command-line interface (CLI) for 
 ---
 
 This CLI provides a flexible way to use the LogxDB parser and test regex patterns directly from the command line.
+---
+## Running the Example
+
+Navigate to the `test/` directory and run:
+
+```bash
+python main.py
+```
+
+---
+
+## Troubleshooting
+
+- **`sqlite3.Connection` cannot be pickled**: Ensure each process opens its own SQLite connection.
+
+---
+
+## Dependencies
+
+- **Python 3.10+**
+- **chardet**: Install using:
+  
+    ```bash
+    pip install chardet
+    ```
+
+- **sqlite3**: Comes pre-installed with Python.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
+
+---
+
+## Contributing
+
+Contributions are welcome! Open an issue or submit a pull request for improvements.
+
+---
+
+## Contact
+
+If you have any questions or suggestions, feel free to open an issue or contact the repository owner.
+
+---
+
