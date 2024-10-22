@@ -96,89 +96,7 @@ parser.parse_multiple_files(files_with_configs, enable_multiprocessing=True)
 ```
 
 ---
-## CLI Documentation
 
-The `parser_cli.py` script provides a powerful command-line interface (CLI) for running the LogxDB parser and testing regex patterns interactively.
-
-### Available Commands and Arguments
-
-1. **Launching the Interactive Regex Testing REPL:**
-
-   Use the `--repl` option to enter an interactive session where you can test regex patterns against input strings:
-
-   ```bash
-   python parser_cli.py --repl
-   ```
-
-   **Example Interaction:**
-
-   ```
-   Welcome to the Regex Tester REPL! Type 'exit' to quit.
-   Enter regex pattern: (?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)
-   Enter test string: 2024-10-22 16:19:43 - INFO - Parsing completed successfully.
-   Match found:
-   {
-       "timestamp": "2024-10-22 16:19:43",
-       "level": "INFO",
-       "message": "Parsing completed successfully."
-   }
-   Enter regex pattern: exit
-   ```
-
-2. **Running the Log Parser with File Configurations:**
-
-   The following options are required when running the parser:
-
-   - **`--db-path`**: Path to the SQLite database file.
-   - **`--files`**: One or more log files to parse.
-   - **`--regexes`**: Regex patterns for each log file.
-   - **`--tables`**: Table names corresponding to each log file.
-   - **`--columns`**: Comma-separated column names for each table.
-   - **`--multiprocessing`**: (Optional) Enable multiprocessing for faster parsing.
-
-   **Example Command:**
-
-   ```bash
-   python parser_cli.py        --db-path logs.db        --files test/example_log_500_lines.log test/another_log.log        --regexes "(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)"                  "(?P<date>\d{2}/\d{2}/\d{4}) \| (?P<event>\w+) \| (?P<details>.*)"        --tables table_500_lines another_table        --columns "timestamp,level,message" "date,event,details"        --multiprocessing
-   ```
-
-3. **Error Handling:**
-
-   If any required arguments are missing, the script will raise an error. Use `--help` to view all available options:
-
-   ```bash
-   python parser_cli.py --help
-   ```
-
-   **Sample Output:**
-
-   ```
-   usage: parser_cli.py [-h] --db-path DB_PATH --files FILES [FILES ...] --regexes
-                        REGEXES [REGEXES ...] --tables TABLES [TABLES ...] --columns
-                        COLUMNS [COLUMNS ...] [--multiprocessing] [--repl]
-
-   LogxDB: Log Parser with CLI and Regex REPL
-
-   optional arguments:
-     -h, --help            Show this help message and exit
-     --db-path DB_PATH     Path to the SQLite database
-     --files FILES [FILES ...]
-                           List of log files to parse
-     --regexes REGEXES [REGEXES ...]
-                           List of regex patterns for each file
-     --tables TABLES [TABLES ...]
-                           Table names for each log file
-     --columns COLUMNS [COLUMNS ...]
-                           Comma-separated column names for each table
-     --multiprocessing     Enable multiprocessing
-     --repl                Launch interactive regex testing REPL
-   ```
-
----
-
-This CLI provides a flexible way to use the LogxDB parser and test regex patterns directly from the command line.
-
----
 ## Running the Example
 
 Navigate to the `test/` directory and run:
@@ -226,3 +144,53 @@ If you have any questions or suggestions, feel free to open an issue or contact 
 
 ---
 
+## New Functionalities
+
+1. **Customizable Logging Levels and Log Files:**
+   - Control the verbosity of logs using logging levels (`DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`).
+   - Optionally write logs to a specified log file for tracking and debugging.
+
+   **Example Usage:**
+   ```bash
+   python parser_cli.py --db-path logs.db        --files test/example_log_500_lines.log        --regexes "(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)"        --tables table_500_lines        --columns "timestamp,level,message"        --log-level DEBUG        --log-file parser.log
+   ```
+
+   **Available Log Levels:**
+   - `DEBUG`: Detailed information, typically of interest only when diagnosing problems.
+   - `INFO`: Confirmation that things are working as expected.
+   - `WARNING`: An indication that something unexpected happened, or indicative of some problem in the near future.
+   - `ERROR`: Due to a more serious problem, the software has not been able to perform some function.
+   - `CRITICAL`: A serious error, indicating that the program itself may be unable to continue running.
+
+2. **Improved CLI with REPL and Error Handling:**
+   - Launch an interactive **Regex Testing REPL** to test regex patterns against strings interactively.
+   - Robust error handling to ensure proper argument validation when running the parser.
+
+   **REPL Usage Example:**
+   ```bash
+   python parser_cli.py --repl
+   ```
+
+   **Example Interaction:**
+   ```
+   Welcome to the Regex Tester REPL! Type 'exit' to quit.
+   Enter regex pattern: (?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)
+   Enter test string: 2024-10-22 16:19:43 - INFO - Parsing completed successfully.
+   Match found:
+   {
+       "timestamp": "2024-10-22 16:19:43",
+       "level": "INFO",
+       "message": "Parsing completed successfully."
+   }
+   ```
+
+3. **Multiprocessing Support:**
+   - Enable multiprocessing to speed up parsing for large datasets.
+   - Example command to process multiple files in parallel:
+     ```bash
+     python parser_cli.py --db-path logs.db          --files test/example_log_500_lines.log test/another_log.log          --regexes "(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)"                    "(?P<date>\d{2}/\d{2}/\d{4}) \| (?P<event>\w+) \| (?P<details>.*)"          --tables table_500_lines another_table          --columns "timestamp,level,message" "date,event,details"          --multiprocessing
+     ```
+
+---
+
+These new functionalities make LogxDB more powerful and easier to use, enhancing its flexibility with better logging, testing, and multiprocessing support.
