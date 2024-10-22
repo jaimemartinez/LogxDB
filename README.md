@@ -213,6 +213,21 @@ The `parser_cli.py` script provides a powerful command-line interface (CLI) for 
 
 This CLI provides a flexible way to use the LogxDB parser and test regex patterns directly from the command line.
 
+## Updated CLI with Logging Configuration
+
+The CLI now supports setting the logging level and logging to a file.
+
+### CLI Arguments for Logging
+
+- **`--log-level`**: Set the logging level (default: `INFO`).
+- **`--log-file`**: Specify a file to log messages (optional).
+
+### Example CLI Command
+
+```bash
+python parser_cli.py     --db-path logs.db     --files test/example_log_500_lines.log test/another_log.log     --regexes "(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)"               "(?P<date>\d{2}/\d{2}/\d{4}) \| (?P<event>\w+) \| (?P<details>.*)"     --tables table_500_lines another_table     --columns "timestamp,level,message" "date,event,details"     --multiprocessing     --log-level DEBUG     --log-file parser.log
+```
+
 ---
 ## Running the Example
 
