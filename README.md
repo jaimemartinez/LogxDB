@@ -275,3 +275,25 @@ Contributions are welcome! Open an issue or submit a pull request for improvemen
 If you have any questions or suggestions, feel free to open an issue or contact the repository owner.
 
 ---
+
+---
+
+## New Feature: User-Friendly Configuration with YAML/JSON
+
+You can now use YAML or JSON files to configure the parser. This makes it easier to manage multiple log files, regex patterns, and database settings.
+
+### Example YAML Configuration
+
+```yaml
+files:
+  - file: test/log_file_1.log
+    regex: "(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)"
+    table: logs_1
+    columns: ["timestamp", "level", "message"]
+```
+
+### Example CLI Command
+
+```bash
+python parser_cli.py --config config.yaml --log-level DEBUG --log-file parser.log
+```
