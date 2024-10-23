@@ -1,7 +1,7 @@
 
 # LogxDB: Simple Log Parsing Library for Everyone  
 
-**LogxDB** is a  log parsing library that extracts data from log files, stores it in an SQLite database, and provides tools to interact with that data. With support for multi-line entries, multiprocessing, and YAML/JSON configuration files.
+**LogxDB** is a high-performance log parser designed to handle multiple log files concurrently with multiprocessing and auto-detect encoding to ensure compatibility with diverse formats. It stores parsed data in SQLite databases with support for custom regex patterns, table names, and column orders.
 
 ---
 
