@@ -115,7 +115,7 @@ Create a `config.json`:
     {
       "file": "web_server.log",
       "table": "web_logs",
-      "regex": "(?P<ip>\d+\.\d+\.\d+\.\d+) - \[(?P<timestamp>.*?)\] - (?P<status>\d+)",
+      "regex": "(?P<ip>\\d+\\.\\d+\\.\\d+\\.\\d+) - \\[(?P<timestamp>.*?)\\] - (?P<status>\\d+)",
       "columns": ["ip", "timestamp", "status"]
     }
   ]
@@ -213,13 +213,6 @@ Match found:
    ```
 5. **Open a pull request**.
 
----
-
-## Contact
-
-For questions or feedback:
-- **Email**: example@email.com
-- **GitHub Issues**: Submit an issue on the repository.
 
 ---
 
