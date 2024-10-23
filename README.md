@@ -24,8 +24,8 @@ logxdb/
 ### **Summary of Functionalities:**
 
 1. [**Logging Configuration**](#1-logging-configuration): Logs operations with different verbosity levels.
-2. [**Encoding Detection**](#2-encoding-detection): Detects encoding using `chardet`.
-3. **Regex Matching**: Identifies the appropriate regex for a log file.
+2. [**Encoding Detection**](#2-detect-file-encoding): Detects encoding using `chardet`.
+3. [**Regex Matching**](#3-find-matching-regex-for-file): Identifies the appropriate regex for a log file.
 4. **Log Preprocessing**: Handles unmatched lines by appending them to the previous valid entry.
 5. **Multiple Match Handling**: Processes multiple regex matches within the same line.
 6. **SQLite Database Creation**: Creates tables dynamically if they don't exist.
