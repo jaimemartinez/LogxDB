@@ -6,15 +6,17 @@ This project provides a **log parsing tool** that processes log files using regu
 ## Project Structure
 
 ```
-project/
+logxdb/
 │
-├── parser.py            # Core log parsing logic
-├── parser_cli.py        # CLI interface for the parser
-├── config.yaml          # YAML configuration example
-├── config.json          # JSON configuration example
-├── web_server.log       # Sample log file 1
-├── app.log              # Sample log file 2
-└── README.md            # Documentation (this file)
+├── parser.py          # Main parser logic with multiprocessing and SQLite support
+├── parser_cli.py      # Command-line interface for LogxDB with regex REPL and config support
+├── test/
+│       ├── main.py            # Example script to use the parser
+│       ├── example_log_500_lines.log  # Example log file with timestamped entries
+│       ├── another_log.log            # Example log file with event-based entries
+│       ├── another_log.log    # Example log file with event-based entries
+├── LICENSE            # License file (MIT License)
+└── README.md          # Documentation for the project
 ```
 
 ---
