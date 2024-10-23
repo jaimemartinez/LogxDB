@@ -443,26 +443,236 @@ parser.parse_with_config_file('config.yaml')
 
 
 ---
+## Documentation for `parser_cli.py`
 
+`parser_cli.py` is the command-line interface (CLI) for `LogxDB`, a log file parsing utility. This script allows users to process multiple log files, apply custom regular expressions (regexes), store parsed data in a SQLite database, and configure the parsing process via command-line arguments or configuration files (YAML/JSON).
 
+## Table of Contents
 
-## Installation
-
-1. **Install Python Dependencies**:
-   ```bash
-   pip install chardet pyyaml
-   ```
-
-2. **Clone the Repository**:
-   ```bash
-   git clone <repository_url>
-   cd logxdb
-   ```
-
-3. **Run Tests**:
-   Use the `test/` folder for sample scripts and logs.
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [1. Run Regex REPL](#1-run-regex-repl)
+  - [2. Parse Logs with Config Files](#2-parse-logs-with-config-files)
+  - [3. Parse Logs with CLI Arguments](#3-parse-logs-with-cli-arguments)
+  - [4. Logging and Error Handling](#4-logging-and-error-handling)
+  - [5. Multiprocessing Support](#5-multiprocessing-support)
+- [Code Examples](#code-examples)
+- [Commands Summary](#commands-summary)
 
 ---
+
+## **Overview**
+
+`parser_cli.py` provides a flexible interface for parsing log files through the command line. It supports reading custom regular expressions from YAML/JSON configuration files or directly via command-line arguments. Additionally, it offers features like multiprocessing for faster log processing, logging to files, and an interactive regex testing mode.
+
+---
+
+## **Features**
+
+- **Interactive Regex REPL**: Test and evaluate regex patterns interactively.
+- **Configuration File Support**: Use YAML or JSON files to define log files, regexes, and table structure.
+- **Command-Line Parsing**: Pass log files, regex patterns, and database details directly via CLI.
+- **Multiprocessing Support**: Enable or disable multiprocessing to process logs faster using multiple CPU cores.
+- **Logging**: Customizable logging with multiple levels (DEBUG, INFO, WARNING, ERROR, CRITICAL) and file logging support.
+- **Error Handling**: Handles unexpected errors, missing files, and invalid configurations with meaningful messages.
+
+---
+
+## **Installation**
+
+Ensure you have Python 3.6+ installed on your machine. Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+The required libraries include:
+- `argparse` for command-line argument parsing
+- `re` for regular expressions
+- `yaml` for YAML file handling
+- `json` for JSON file handling
+- `sqlite3` for database interaction
+- `logging` for error tracking and debugging
+
+---
+
+## **Usage**
+
+`parser_cli.py` can be used in several ways depending on the requirements. Below are usage examples for common scenarios.
+
+### **1. Run Regex REPL**
+
+The Regex REPL allows you to interactively test regex patterns and evaluate their output on test strings.
+
+#### **Command:**
+```bash
+python parser_cli.py --repl
+```
+
+#### **Example Interaction:**
+```
+Welcome to the Regex Tester REPL! Type 'exit' to quit.
+Enter regex pattern: (\d{4}-\d{2}-\d{2})
+Enter test string: 2024-10-23
+Match found: {'0': '2024-10-23'}
+```
+
+---
+
+### **2. Parse Logs with Config Files**
+
+You can configure the parsing process using YAML or JSON files. These config files allow you to specify the log files, regexes, table names, and columns to be stored in the SQLite database.
+
+#### **Command:**
+```bash
+python parser_cli.py --config config.yaml
+```
+
+#### **YAML Example:**
+```yaml
+files:
+  - file: "PanGPS.log"
+    table: "PanGPS"
+    regexes: 
+      - "(P\\d+-T\\d+).*?(Info|Debug).*"
+    columns:
+      - process
+      - date
+      - time
+      - log
+```
+
+#### **JSON Example:**
+```json
+{
+  "files": [
+    {
+      "file": "PanGPS.log",
+      "table": "PanGPS",
+      "regexes": ["(P\\d+-T\\d+).*?(Info|Debug).*"],
+      "columns": ["process", "date", "time", "log"]
+    }
+  ]
+}
+```
+
+---
+
+### **3. Parse Logs with CLI Arguments**
+
+Instead of using config files, you can specify the log files, regex patterns, and database columns directly via CLI.
+
+#### **Command:**
+```bash
+python parser_cli.py --db-path logs.db \
+  --files PanGPS.log \
+  --regexes "(P\\d+-T\\d+).*?(Info|Debug).*" \
+  --tables PanGPS \
+  --columns "process,date,time,log" \
+  --log-level DEBUG
+```
+
+This command parses the `PanGPS.log` file using the provided regex pattern, stores the parsed data in the SQLite database at `logs.db`, and logs debug information.
+
+---
+
+### **4. Logging and Error Handling**
+
+`parser_cli.py` supports customizable logging levels and outputs logs to files.
+
+#### **Command:**
+```bash
+python parser_cli.py --db-path logs.db \
+  --files PanGPS.log \
+  --regexes "(P\\d+-T\\d+).*?(Info|Debug).*" \
+  --tables PanGPS \
+  --columns "process,date,time,log" \
+  --log-level INFO \
+  --log-file parser.log
+```
+
+This example logs all information at `INFO` level and stores logs in `parser.log`. If an error occurs (e.g., missing files or incorrect regex), an appropriate error message will be logged and printed to the console.
+
+---
+
+### **5. Multiprocessing Support**
+
+To speed up parsing for multiple files, enable multiprocessing by passing the `--multiprocessing` flag.
+
+#### **Command:**
+```bash
+python parser_cli.py --config config.yaml --multiprocessing
+```
+
+This uses all available CPU cores to process multiple log files in parallel.
+
+---
+
+## **Code Examples**
+
+### **Regex REPL Example**
+```bash
+python parser_cli.py --repl
+```
+Output:
+```
+Welcome to the Regex Tester REPL! Type 'exit' to quit.
+Enter regex pattern: (\d{4}-\d{2}-\d{2})
+Enter test string: 2024-10-23
+Match found: {'0': '2024-10-23'}
+```
+
+### **Parse Logs Using Config File**
+```bash
+python parser_cli.py --config config.yaml
+```
+The `config.yaml` file specifies log files and regex patterns. Example:
+```yaml
+files:
+  - file: "PanGPS.log"
+    table: "PanGPS"
+    regexes: 
+      - "(P\\d+-T\\d+).*?(Info|Debug).*"
+    columns:
+      - process
+      - date
+      - time
+      - log
+```
+
+### **Parse Logs Using Command-Line Arguments**
+```bash
+python parser_cli.py --db-path logs.db \
+  --files PanGPS.log \
+  --regexes "(P\\d+-T\\d+).*?(Info|Debug).*" \
+  --tables PanGPS \
+  --columns "process,date,time,log"
+```
+
+### **Multiprocessing Example**
+```bash
+python parser_cli.py --config config.yaml --multiprocessing
+```
+
+---
+
+## **Commands Summary**
+
+- `--repl`: Launch the interactive Regex Tester REPL.
+- `--config <config_file>`: Specify a YAML or JSON configuration file.
+- `--db-path <db_path>`: Specify the path to the SQLite database.
+- `--files <file1> <file2>`: List the log files to parse.
+- `--regexes <regex1> <regex2>`: List the regex patterns for each file.
+- `--tables <table1> <table2>`: List the table names for storing parsed data.
+- `--columns <cols1> <cols2>`: List the columns for each table.
+- `--multiprocessing`: Enable multiprocessing for faster log parsing.
+- `--log-level <level>`: Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL).
+- `--log-file <log_file>`: Specify a log file to store the logs.
+
+---
+
 
 ## Contributing
 
