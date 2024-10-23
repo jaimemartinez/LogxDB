@@ -23,7 +23,7 @@ logxdb/
 ---
 ### **Summary of Functionalities:**
 
-[1. Logging Configuration]1. **Logging Configuration**: Logs operations with different verbosity levels.
+1. [1. Logging Configuration] (#**Logging Configuration**: Logs operations with different verbosity levels.)
 2. **Encoding Detection**: Detects encoding using `chardet`.
 3. **Regex Matching**: Identifies the appropriate regex for a log file.
 4. **Log Preprocessing**: Handles unmatched lines by appending them to the previous valid entry.
