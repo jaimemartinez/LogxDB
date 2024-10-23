@@ -291,7 +291,14 @@ data = [
 
 parser.save_to_db('log_table', data, ['process', 'severity', 'log'])
 ```
+#### **Expected Output**:
 
+The **SQLite table** after calling the `save_to_db` function:
+
+| **ID** | **Process**    | **Severity** | **Log**                                            |
+|--------|----------------|--------------|----------------------------------------------------|
+| 1      | P3308-T5876    | Info         | Event 1                                            |
+| 2      | P3308-T5876    | Debug        | Event 2                                            |
 ---
 
 ### **8. Process a Single File**
