@@ -130,13 +130,13 @@ files:
     {
       "file": "web_server.log",
       "table": "web_logs",
-      "regex": "(?P<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[(?P<timestamp>\d{2}\/\w+\/\d+:\d+:\d+:\d+)\] - (?P<status>.*)",
+      "regex": "(?P<ip>\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) - \\[(?P<timestamp>\\d{2}\\/\w+\\/\d+:\\d+:\\d+:\\d+)\\] - (?P<status>.*)",
       "columns": ["ip", "timestamp", "status"]
     },
     {
       "file": "app.log",
       "table": "app_logs",
-      "regex": "(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)",
+      "regex": "(?P<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}) - (?P<level>\\w+) - (?P<message>.*)",
       "columns": ["timestamp", "level", "message"]
     }
   ]
