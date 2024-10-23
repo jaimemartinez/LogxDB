@@ -1,4 +1,3 @@
-
 # LogxDB: A Robust Log Parser with Multiprocessing and Encoding Detection
 
 **LogxDB** is a high-performance log parser designed to handle multiple log files concurrently with **multiprocessing** and **auto-detect encoding** to ensure compatibility with diverse formats. It stores parsed data in **SQLite** databases with support for **custom regex patterns**, **table names**, and **column orders**.
@@ -11,11 +10,10 @@
 logxdb/
 │
 ├── parser.py          # Main parser logic with multiprocessing and SQLite support
-├── parser_cli.py      # Command-line interface for LogxDB with regex REPL and config support
-├── test/              # Example scripts and log files for testing
-│       ├── main.py    # Example script to use the parser
+├── test/
+│       ├── main.py            # Example script to use the parser
 │       ├── example_log_500_lines.log  # Example log file with timestamped entries
-│       ├── another_log.log            # Example log file with event-based entries
+│       ├── another_log.log    # Example log file with event-based entries
 ├── LICENSE            # License file (MIT License)
 └── README.md          # Documentation for the project
 ```
@@ -29,8 +27,6 @@ logxdb/
 3. **Custom Table Names and Column Orders**: Save logs to SQLite with custom table names and column configurations.
 4. **Regex Parsing**: Use flexible regex patterns to extract log data.
 5. **Multi-line Log Entry Support**: Handles logs that span multiple lines.
-6. **YAML/JSON Configuration Support**: Manage log parsing rules in user-friendly YAML/JSON files.
-7. **Interactive Regex Testing REPL**: Test regex patterns directly from the CLI.
 
 ---
 
@@ -46,108 +42,200 @@ logxdb/
 2. Install dependencies:
 
     ```bash
-    pip install chardet pyyaml
+    pip install chardet
     ```
 
 ---
 
-## Documentation
+## Usage Guide for Each Functionality
 
-### `parser.py`: Core Parser Logic
+### 1. Detecting Encoding of Log Files
 
-1. **Detecting Encoding of Log Files**:
+LogxDB uses `chardet` to detect the encoding of each file:
 
-   ```python
-   encoding = parser.detect_encoding("test/example_log_500_lines.log")
-   print(f"Detected encoding: {encoding}")
-   ```
-
-2. **Parsing a Single Log File**:
-
-   ```python
-   data = parser.parse_file("test/example_log_500_lines.log", regex_1)
-   print(data)
-   ```
-
-3. **Storing Data in SQLite Database**:
-
-   ```python
-   data = [{"ip": "192.168.1.1", "timestamp": "22/Oct/2024:16:00:01", "status": "200"}]
-   parser.save_to_db("logs", data, ["ip", "timestamp", "status"])
-   ```
-
-4. **Using YAML/JSON Configuration Files**:
-
-   Example YAML configuration:
-   ```yaml
-   files:
-     - file: web_server.log
-       table: web_logs
-       regex: (?P<ip>\d+\.\d+\.\d+\.\d+) - \[(?P<timestamp>.*)\] - (?P<status>.*)
-       columns: [ip, timestamp, status]
-   ```
+```python
+encoding = parser.detect_encoding("test/example_log_500_lines.log")
+print(f"Detected encoding: {encoding}")
+```
 
 ---
 
-### `parser_cli.py`: Command-Line Interface
+### 2. Parsing a Single Log File
 
-1. **Using the CLI with YAML Configuration**:
+```python
+data = parser.parse_file("test/example_log_500_lines.log", regex_1)
+print(data)
+```
 
-   ```bash
-   python parser_cli.py --config config.yaml --multiprocessing --log-level DEBUG --log-file parser.log
-   ```
+---
 
-2. **Using Individual Parameters**:
+### 3. Storing Data in SQLite Database
 
-   ```bash
-   python parser_cli.py --db-path logs.db --files web_server.log app.log \
-       --regexes "(?P<ip>\d+\.\d+\.\d+\.\d+) - \[(?P<timestamp>.*)\] - (?P<status>.*)" \
-                 "(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)" \
-       --tables web_logs app_logs --columns ip,timestamp,status timestamp,level,message \
-       --multiprocessing --log-level DEBUG --log-file parser_output.log
-   ```
+```python
+parser.save_to_db("log_table", data, ["timestamp", "level", "message"])
+```
 
-3. **Launching the Regex REPL**:
+---
+
+### 4. Handling Multiple Files with Custom Configurations
+
+```python
+files_with_configs = {
+    "test/example_log_500_lines.log": ("table_500_lines", regex_1, ["timestamp", "level", "message"]),
+    "test/another_log.log": ("another_table", regex_2, ["date", "event", "details"])
+}
+```
+
+---
+
+### 5. Enabling Multiprocessing for Faster Processing
+
+```python
+parser.parse_multiple_files(files_with_configs, enable_multiprocessing=True)
+```
+
+---
+
+## Customizable Logging Levels
+
+The LogxDB parser now supports **customizable logging levels**. You can set the logging level to one of the following:
+
+- **DEBUG**: Detailed information for diagnosing problems.
+- **INFO**: General information about the program’s execution.
+- **WARNING**: Indicates a potential issue that does not stop the program.
+- **ERROR**: A problem that causes part of the program to fail.
+- **CRITICAL**: A serious issue causing the program to stop.
+
+By default, the logging level is set to `INFO`. If needed, you can **log to a file** by specifying a log file path.
+
+### Example Usage in Code
+
+```python
+from parser import LogParser
+
+# Initialize the parser with a custom logging level and optional log file
+parser = LogParser(
+    db_path="logs.db",
+    log_level="DEBUG",  # Available options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+    log_file="parser.log"  # Optional: Log messages will be saved to this file
+)
+```
+
+### Example Log Output (DEBUG Level)
+
+```text
+2024-10-22 17:00:01 - DEBUG - Detected encoding for test/example_log_500_lines.log: utf-8
+2024-10-22 17:00:01 - INFO - Processing file: test/example_log_500_lines.log
+2024-10-22 17:00:02 - INFO - Finished parsing test/example_log_500_lines.log. Parsed 500 entries.
+2024-10-22 17:00:02 - INFO - Saved 500 entries to table 'table_500_lines'.
+```
+
+---
+## CLI Documentation
+
+The `parser_cli.py` script provides a powerful command-line interface (CLI) for running the LogxDB parser and testing regex patterns interactively.
+
+### Available Commands and Arguments
+
+1. **Launching the Interactive Regex Testing REPL:**
+
+   Use the `--repl` option to enter an interactive session where you can test regex patterns against input strings:
 
    ```bash
    python parser_cli.py --repl
    ```
 
+   **Example Interaction:**
+
+   ```
+   Welcome to the Regex Tester REPL! Type 'exit' to quit.
+   Enter regex pattern: (?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)
+   Enter test string: 2024-10-22 16:19:43 - INFO - Parsing completed successfully.
+   Match found:
+   {
+       "timestamp": "2024-10-22 16:19:43",
+       "level": "INFO",
+       "message": "Parsing completed successfully."
+   }
+   Enter regex pattern: exit
+   ```
+
+2. **Running the Log Parser with File Configurations:**
+
+   The following options are required when running the parser:
+
+   - **`--db-path`**: Path to the SQLite database file.
+   - **`--files`**: One or more log files to parse.
+   - **`--regexes`**: Regex patterns for each log file.
+   - **`--tables`**: Table names corresponding to each log file.
+   - **`--columns`**: Comma-separated column names for each table.
+   - **`--multiprocessing`**: (Optional) Enable multiprocessing for faster parsing.
+
+   **Example Command:**
+
+   ```bash
+   python parser_cli.py        --db-path logs.db        --files test/example_log_500_lines.log test/another_log.log        --regexes "(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)"                  "(?P<date>\d{2}/\d{2}/\d{4}) \| (?P<event>\w+) \| (?P<details>.*)"        --tables table_500_lines another_table        --columns "timestamp,level,message" "date,event,details"        --multiprocessing
+   ```
+
+3. **Error Handling:**
+
+   If any required arguments are missing, the script will raise an error. Use `--help` to view all available options:
+
+   ```bash
+   python parser_cli.py --help
+   ```
+
+   **Sample Output:**
+
+   ```
+   usage: parser_cli.py [-h] --db-path DB_PATH --files FILES [FILES ...] --regexes
+                        REGEXES [REGEXES ...] --tables TABLES [TABLES ...] --columns
+                        COLUMNS [COLUMNS ...] [--multiprocessing] [--repl]
+
+   LogxDB: Log Parser with CLI and Regex REPL
+
+   optional arguments:
+     -h, --help            Show this help message and exit
+     --db-path DB_PATH     Path to the SQLite database
+     --files FILES [FILES ...]
+                           List of log files to parse
+     --regexes REGEXES [REGEXES ...]
+                           List of regex patterns for each file
+     --tables TABLES [TABLES ...]
+                           Table names for each log file
+     --columns COLUMNS [COLUMNS ...]
+                           Comma-separated column names for each table
+     --multiprocessing     Enable multiprocessing
+     --repl                Launch interactive regex testing REPL
+   ```
+
 ---
 
-## Example Logs and Expected Outputs
+This CLI provides a flexible way to use the LogxDB parser and test regex patterns directly from the command line.
 
-### Example Log Files
+## Updated CLI with Logging Configuration
 
-**`web_server.log`**:
+The CLI now supports setting the logging level and logging to a file.
+
+### CLI Arguments for Logging
+
+- **`--log-level`**: Set the logging level (default: `INFO`).
+- **`--log-file`**: Specify a file to log messages (optional).
+
+### Example CLI Command
+
+```bash
+python parser_cli.py     --db-path logs.db     --files test/example_log_500_lines.log test/another_log.log     --regexes "(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)"               "(?P<date>\d{2}/\d{2}/\d{4}) \| (?P<event>\w+) \| (?P<details>.*)"     --tables table_500_lines another_table     --columns "timestamp,level,message" "date,event,details"     --multiprocessing     --log-level DEBUG     --log-file parser.log
 ```
-192.168.1.1 - [22/Oct/2024:16:00:01] - 200
-192.168.1.2 - [22/Oct/2024:16:01:12] - 404
-192.168.1.3 - [22/Oct/2024:16:02:23] - 500
+
+---
+## Running the Example
+
+Navigate to the `test/` directory and run:
+
+```bash
+python main.py
 ```
-
-**`app.log`**:
-```
-2024-10-22 16:10:32 - INFO - Application started
-2024-10-22 16:12:45 - ERROR - Application crashed
-```
-
-### Expected SQLite Output
-
-**Table: web_logs**
-
-| id | ip           | timestamp               | status |
-|----|--------------|-------------------------|--------|
-| 1  | 192.168.1.1  | 22/Oct/2024:16:00:01    | 200    |
-| 2  | 192.168.1.2  | 22/Oct/2024:16:01:12    | 404    |
-| 3  | 192.168.1.3  | 22/Oct/2024:16:02:23    | 500    |
-
-**Table: app_logs**
-
-| id | timestamp           | level | message               |
-|----|---------------------|-------|-----------------------|
-| 1  | 2024-10-22 16:10:32 | INFO  | Application started   |
-| 2  | 2024-10-22 16:12:45 | ERROR | Application crashed   |
 
 ---
 
@@ -161,15 +249,9 @@ logxdb/
 
 - **Python 3.10+**
 - **chardet**: Install using:
-
+  
     ```bash
     pip install chardet
-    ```
-
-- **PyYAML**: Install using:
-
-    ```bash
-    pip install pyyaml
     ```
 
 - **sqlite3**: Comes pre-installed with Python.
@@ -193,3 +275,151 @@ Contributions are welcome! Open an issue or submit a pull request for improvemen
 If you have any questions or suggestions, feel free to open an issue or contact the repository owner.
 
 ---
+
+# Updated README
+
+## Project Structure
+
+```
+project/
+│
+├── parser.py            # Core parsing logic
+├── parser_cli.py        # Command-line interface for Log Parser
+├── README.md            # Project documentation (this file)
+├── config.yaml          # Example YAML configuration file
+├── config.json          # Example JSON configuration file
+├── web_server.log       # Example log file for testing
+├── app.log              # Example log file for testing
+└── test_parser.py       # Unit tests for the project
+```
+
+---
+
+## Documentation
+
+### 1. **parser.py Documentation**
+
+#### Overview
+The `parser.py` file contains the core logic for parsing logs, detecting encoding, saving to a SQLite database, and handling multi-line log entries.
+
+#### Key Functionalities:
+1. **Encoding Detection**: Detects the encoding of log files using `chardet`.
+2. **Multi-line Handling**: Appends unmatched lines to the previous log entry’s status field.
+3. **Regex Matching**: Uses regular expressions to parse log lines into structured data.
+4. **Database Integration**: Saves parsed data into SQLite tables.
+5. **Configuration Support**: Supports YAML and JSON configuration files.
+
+#### Usage Example:
+```python
+from parser import LogParser
+
+parser = LogParser(db_path='logs.db', log_level='INFO')
+
+# Example regex and log parsing
+regex = r'(?P<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[(?P<timestamp>\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2})\] - (?P<status>.*)'
+data = parser.parse_file('web_server.log', regex)
+
+print("Parsed Data:", data)
+```
+
+---
+
+### 2. **parser_cli.py Documentation**
+
+#### Overview
+The `parser_cli.py` file provides a command-line interface (CLI) to run the log parser, with support for YAML/JSON configuration files, multiprocessing, and an interactive regex REPL.
+
+#### Key Functionalities:
+1. **YAML/JSON Configuration**: Define parsing rules and log files in YAML or JSON.
+2. **Multiprocessing Support**: Use multiprocessing for faster parsing.
+3. **Regex REPL**: Test regex patterns interactively.
+4. **Logging Configuration**: Configure log levels and output to a file.
+
+#### CLI Options:
+```bash
+python parser_cli.py --help
+```
+Output:
+```
+usage: parser_cli.py [-h] [--repl] [--config CONFIG] [--db-path DB_PATH]
+                     [--files FILES [FILES ...]] [--regexes REGEXES [REGEXES ...]]
+                     [--tables TABLES [TABLES ...]] [--columns COLUMNS [COLUMNS ...]]
+                     [--multiprocessing] [--log-level {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                     [--log-file LOG_FILE]
+```
+
+---
+
+### Examples
+
+#### 1. **Using a YAML Configuration File**
+`config.yaml`:
+```yaml
+files:
+  - file: web_server.log
+    table: web_logs
+    regex: (?P<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[(?P<timestamp>\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2})\] - (?P<status>.*)
+    columns: [ip, timestamp, status]
+  - file: app.log
+    table: app_logs
+    regex: (?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)
+    columns: [timestamp, level, message]
+```
+
+Run with:
+```bash
+python parser_cli.py --config config.yaml --multiprocessing --log-level DEBUG --log-file parser_output.log
+```
+
+---
+
+#### 2. **Using Individual Parameters**
+```bash
+python parser_cli.py --db-path logs.db --files web_server.log app.log     --regexes "(?P<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[(?P<timestamp>\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2})\] - (?P<status>.*)"     "(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) - (?P<level>\w+) - (?P<message>.*)"     --tables web_logs app_logs --columns ip,timestamp,status timestamp,level,message     --multiprocessing --log-level INFO --log-file parser.log
+```
+
+---
+
+### Example Outputs
+
+#### **SQLite Database Tables**
+
+**web_logs Table**:
+| id | ip          | timestamp            | status |
+|----|-------------|----------------------|--------|
+| 1  | 192.168.1.1 | 22/Oct/2024:16:00:01 | 200    |
+| 2  | 192.168.1.2 | 22/Oct/2024:16:01:12 | 404    |
+| 3  | 192.168.1.3 | 22/Oct/2024:16:02:23 | 500    |
+
+**app_logs Table**:
+| id | timestamp           | level | message               |
+|----|---------------------|-------|-----------------------|
+| 1  | 2024-10-22 16:10:32 | INFO  | Application started   |
+| 2  | 2024-10-22 16:12:45 | ERROR | Application crashed   |
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
+
+## Contributing
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -am 'Add new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.
+
+---
+
+## Contact
+
+For any inquiries, please contact [Your Email](mailto:your.email@example.com).
+```
+
+---
+
+### Write the Updated README.md to File
