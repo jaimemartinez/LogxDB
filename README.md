@@ -533,8 +533,8 @@ python parser_cli.py --config config.yaml
 #### **YAML Example:**
 ```yaml
 files:
-  - file: "PanGPS.log"
-    table: "PanGPS"
+  - file: "example.log"
+    table: "example"
     regexes: 
       - "(P\\d+-T\\d+).*?(Info|Debug).*"
     columns:
@@ -549,8 +549,8 @@ files:
 {
   "files": [
     {
-      "file": "PanGPS.log",
-      "table": "PanGPS",
+      "file": "example.log",
+      "table": "example",
       "regexes": ["(P\\d+-T\\d+).*?(Info|Debug).*"],
       "columns": ["process", "date", "time", "log"]
     }
@@ -567,14 +567,14 @@ Instead of using config files, you can specify the log files, regex patterns, an
 #### **Command:**
 ```bash
 python parser_cli.py --db-path logs.db \
-  --files PanGPS.log \
+  --files example.log \
   --regexes "(P\\d+-T\\d+).*?(Info|Debug).*" \
-  --tables PanGPS \
+  --tables example \
   --columns "process,date,time,log" \
   --log-level DEBUG
 ```
 
-This command parses the `PanGPS.log` file using the provided regex pattern, stores the parsed data in the SQLite database at `logs.db`, and logs debug information.
+This command parses the `example.log` file using the provided regex pattern, stores the parsed data in the SQLite database at `logs.db`, and logs debug information.
 
 ---
 
@@ -585,9 +585,9 @@ This command parses the `PanGPS.log` file using the provided regex pattern, stor
 #### **Command:**
 ```bash
 python parser_cli.py --db-path logs.db \
-  --files PanGPS.log \
+  --files example.log \
   --regexes "(P\\d+-T\\d+).*?(Info|Debug).*" \
-  --tables PanGPS \
+  --tables example \
   --columns "process,date,time,log" \
   --log-level INFO \
   --log-file parser.log
@@ -631,8 +631,8 @@ python parser_cli.py --config config.yaml
 The `config.yaml` file specifies log files and regex patterns. Example:
 ```yaml
 files:
-  - file: "PanGPS.log"
-    table: "PanGPS"
+  - file: "example.log"
+    table: "example"
     regexes: 
       - "(P\\d+-T\\d+).*?(Info|Debug).*"
     columns:
@@ -645,9 +645,9 @@ files:
 ### **Parse Logs Using Command-Line Arguments**
 ```bash
 python parser_cli.py --db-path logs.db \
-  --files PanGPS.log \
+  --files example.log \
   --regexes "(P\\d+-T\\d+).*?(Info|Debug).*" \
-  --tables PanGPS \
+  --tables example \
   --columns "process,date,time,log"
 ```
 
