@@ -434,9 +434,6 @@ parser.parse_with_config_file('config.yaml')
 1. Log messages printed in the console/log file.
 2. Entries saved to the SQLite database.
 
----
-
-This breakdown includes **how-to examples** for each functionality, showing how to apply the provided parser code efficiently.
 
 ---
 
