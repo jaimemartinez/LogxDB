@@ -130,7 +130,7 @@ files:
     {
       "file": "web_server.log",
       "table": "web_logs",
-      "regex": "(?P<ip>\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) - \\[(?P<timestamp>\\d{2}\\/\w+\\/\d+:\\d+:\\d+:\\d+)\\] - (?P<status>.*)",
+      "regex": "(?P<ip>\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) - \\[(?P<timestamp>\\d{2}\\/\\w+\\/\\d+:\\d+:\\d+:\\d+)\\] - (?P<status>.*)",
       "columns": ["ip", "timestamp", "status"]
     },
     {
