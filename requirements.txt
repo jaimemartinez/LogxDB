@@ -1,0 +1,24 @@
+# Core dependencies for log parsing and command-line interface
+argparse==1.4.0   # CLI argument parsing
+logging            # Standard Python logging module (no need to install separately)
+
+# Encoding detection library
+charset-normalizer==3.3.0   # Robust encoding detection
+
+# YAML and JSON support
+PyYAML==6.0        # Parsing YAML config files
+
+# Database support (SQLite)
+sqlite3            # Built-in SQLite support (no installation required)
+
+# Regex handling (Standard Python library, no installation required)
+re
+
+# Multiprocessing support (Standard Python library, no installation required)
+multiprocessing
+
+# Other built-in modules used (no separate installation required)
+datetime
+pathlib
+codecs
+chardet==5.2.0     # Optional: Alternative encoding detection library
